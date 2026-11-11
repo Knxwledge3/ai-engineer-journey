@@ -1,0 +1,5 @@
+pytest
+pydantic>=2
+fastapi
+httpx
+python-dotenv
