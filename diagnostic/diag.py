@@ -8,7 +8,12 @@ def total_by_category(rows):
     """rows: список словарей {"cat": str, "amount": число}.
     Вернуть словарь {категория: сумма}. Пустой список -> {}.
     """
-    raise NotImplementedError('напиши меня')
+    spend = {}
+    for r in rows:
+        if r["cat"] not in spend:
+            spend[r["cat"]] = 0
+        spend[r["cat"]] = spend[r["cat"]] + r["amount"]
+    return spend
 
 def parse_kv(text):
     """Разобрать строку вида "a=1; b = 2;;c=3" в словарь {"a": "1", "b": "2", "c": "3"}.
