@@ -35,7 +35,13 @@ def to_float(value):
     """Превратить строку в число: "1 234,5" -> 1234.5, " 3.14 " -> 3.14.
     Если это не число (в том числе None или пустая строка) -> вернуть None, а не упасть.
     """
-    raise NotImplementedError('напиши меня')
+    if value is None:
+        return None
+    text = str(value).replace(" ", "").replace(",", ".")
+    try:
+        return float(text)
+    except ValueError:
+        return None
 
 def load_json(path, default):
     """Прочитать JSON-файл (кодировка utf-8).
