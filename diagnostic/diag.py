@@ -20,7 +20,16 @@ def parse_kv(text):
     Пробелы вокруг ключей и значений убрать, пустые куски пропустить.
     Кусок без знака "=" -> ValueError.
     """
-    raise NotImplementedError('напиши меня')
+    result = {}
+    for piece in text.split(";"):
+        piece = piece.strip()
+        if not piece:
+            continue
+        if "=" not in piece:
+            raise ValueError("нет знака = в куске: " + piece)
+        kv = piece.split("=")
+        result[kv[0].strip()] = kv[1].strip()
+    return result
 
 def to_float(value):
     """Превратить строку в число: "1 234,5" -> 1234.5, " 3.14 " -> 3.14.
