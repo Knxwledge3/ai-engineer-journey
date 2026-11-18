@@ -47,7 +47,11 @@ def load_json(path, default):
     """Прочитать JSON-файл (кодировка utf-8).
     Файла нет или внутри сломанный JSON -> вернуть default.
     """
-    raise NotImplementedError('напиши меня')
+    try:
+        with open(path, encoding="utf-8") as f:
+            return json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        return default
 
 class Budget:
     """Бюджет с лимитом.
