@@ -96,4 +96,6 @@ def chat_turn(history, user_text, llm):
     Добавить сообщение пользователя, вызвать llm со всей историей, добавить ответ ассистента.
     Вернуть (ответ, новая_история). Исходный список history не изменять.
     """
-    raise NotImplementedError('напиши меня')
+    new = list(history) + [{"role": "user", "content": user_text}]
+    reply = llm(new)
+    return reply, new + [{"role": "assistant", "content": reply}]
