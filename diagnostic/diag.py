@@ -76,7 +76,13 @@ def retry(fn, attempts=3):
     """Вызывать fn() до attempts раз. Вернуть результат первого успешного вызова.
     Если все попытки упали -> пробросить последнее исключение.
     """
-    raise NotImplementedError('напиши меня')
+    last = None
+    for _ in range(attempts):
+        try:
+            return fn()
+        except Exception as e:
+            last = e
+    raise last
 
 def top_k(scores, k):
     """scores: словарь {имя: оценка}. Вернуть список из k имён с наибольшей оценкой.
