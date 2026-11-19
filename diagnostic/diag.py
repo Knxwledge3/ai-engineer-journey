@@ -60,14 +60,17 @@ class Budget:
     """
 
     def __init__(self, limit):
-        raise NotImplementedError('напиши меня')
+        self.limit = limit
+        self.spent = 0
 
     @property
     def left(self):
-        raise NotImplementedError('напиши меня')
+        return self.limit - self.spent
 
     def spend(self, amount):
-        raise NotImplementedError('напиши меня')
+        if amount < 0 or amount > self.left:
+            raise ValueError("недопустимая трата")
+        self.spent = self.spent + amount
 
 def retry(fn, attempts=3):
     """Вызывать fn() до attempts раз. Вернуть результат первого успешного вызова.
