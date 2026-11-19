@@ -88,7 +88,7 @@ def top_k(scores, k):
     """scores: словарь {имя: оценка}. Вернуть список из k имён с наибольшей оценкой.
     При равной оценке раньше идёт имя, которое меньше по алфавиту.
     """
-    raise NotImplementedError('напиши меня')
+    return sorted(scores, key=lambda n: (-scores[n], n))[:k]
 
 def chat_turn(history, user_text, llm):
     """Один ход диалога.
